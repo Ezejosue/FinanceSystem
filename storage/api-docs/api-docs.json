@@ -1,0 +1,86 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Finance Control API",
+        "description": "API documentation for Finance Control Application",
+        "contact": {
+            "email": "admin@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/balance/{userId}": {
+            "get": {
+                "tags": [
+                    "Balance"
+                ],
+                "summary": "Get Balance by User ID",
+                "operationId": "5ac77760c314e50ed2169d558240c082",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Balance"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Balance": {
+                "title": "Balance",
+                "description": "Balance model",
+                "required": [
+                    "entryType",
+                    "description",
+                    "amount",
+                    "entryDate"
+                ],
+                "properties": {
+                    "entryType": {
+                        "description": "Type of the entry",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "Description of the entry",
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Amount of the entry",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "entryDate": {
+                        "description": "Date of the entry",
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

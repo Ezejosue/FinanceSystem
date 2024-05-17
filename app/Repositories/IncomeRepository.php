@@ -24,5 +24,7 @@ class IncomeRepository implements IncomeRepositoryInterface
         return Income::where('user_id', $userId)->get();
     }
 
+    
+
     // Other CRUD methods
 }

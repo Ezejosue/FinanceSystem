@@ -24,5 +24,7 @@ class IncomeService
         return $this->incomeRepository->getByUserId($userId);
     }
 
+    
+
     // Other business logic methods
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\IncomeController;
 use App\Http\Controllers\BalanceController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,5 @@ Route::get('/customer', [CustomerController::class, 'show']);
 Route::post('/income', [IncomeController::class, 'store']);
 Route::get('/income/{userId}', [IncomeController::class, 'show']);
 Route::get('/balance/{userId}', [BalanceController::class, 'show']);    
+Route::post('/login', [AuthController::class, 'login']);
+

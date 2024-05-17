@@ -26,4 +26,4 @@ Route::post('/income', [IncomeController::class, 'store']);
 Route::get('/income/{userId}', [IncomeController::class, 'show']);
 Route::get('/balance/{userId}', [BalanceController::class, 'show']);    
 Route::post('/login', [AuthController::class, 'login']);
-
+Route::post('/register', [AuthController::class, 'register']);

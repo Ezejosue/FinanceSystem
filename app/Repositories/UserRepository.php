@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Models\User;
 use App\DTOs\LoginDTO;
+use App\DTOs\RegisterDTO;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
@@ -22,5 +23,16 @@ class UserRepository implements UserRepositoryInterface
         }
 
         return null;
+    }
+
+    public function register(RegisterDTO $registerDTO)
+    {
+        $user = User::create([
+            'username' => $registerDTO->username,
+            'email' => $registerDTO->email,
+            'password' => Hash::make($registerDTO->password),
+        ]);
+
+        return $user;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\DTOs\LoginDTO;
+use App\DTOs\RegisterDTO;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -26,5 +27,16 @@ class UserService
         }
 
         return null;
+    }
+
+      public function register(RegisterDTO $registerDTO)
+    {
+        $user = $this->userRepository->register($registerDTO);
+
+        Log::info('User registration result:', ['user' => $user]);
+
+        $token = $user->createToken('authToken')->plainTextToken;
+
+        return ['user' => $user, 'token' => $token];
     }
 }

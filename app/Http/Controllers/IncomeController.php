@@ -37,5 +37,7 @@ class IncomeController extends Controller
         return response()->json($income);
     }
 
+    
+
     // Other controller methods
 }

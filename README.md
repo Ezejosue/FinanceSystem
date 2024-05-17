@@ -148,6 +148,11 @@ http://localhost:8000/api/documentation
 
 - `GET /api/balance/{userId}` - Get balance by user ID
 
+### Auth Routes
+
+- `POST /api/login` - User login
+- `POST /api/register` - User registration
+
 ## Contributing
 
 Contributions are welcome! Please follow these steps:

@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+         if (!Schema::hasTable('personal_access_tokens')) {
+            Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tokenable_type');
             $table->unsignedBigInteger('tokenable_id');
@@ -25,7 +26,9 @@ return new class extends Migration
             $table->timestamps();
 
             $table->index(['tokenable_type', 'tokenable_id']);
-        });
+            });
+        }
+      
     }
 
     /**

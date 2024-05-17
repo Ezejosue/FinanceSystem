@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('income', function (Blueprint $table) {
-            $table->integer('id', true);
-            $table->string('type', 50);
-            $table->decimal('amount', 10);
-            $table->date('date');
-            $table->string('invoice');
-            $table->integer('user_id')->nullable()->index('user_id');
-        });
+        if (!Schema::hasTable('income')) {
+            Schema::create('income', function (Blueprint $table) {
+                $table->integer('id', true);
+                $table->string('type', 50);
+                $table->decimal('amount', 10);
+                $table->date('date');
+                $table->string('invoice');
+                $table->integer('user_id')->nullable()->index('user_id');
+            });
+        }
     }
 
     /**

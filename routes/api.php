@@ -22,18 +22,18 @@ use App\Http\Controllers\ExpenseController;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::post('/income', [IncomeController::class, 'store']);
+Route::get('/income/{userId}', [IncomeController::class, 'show']);
+Route::put('/income/{id}', [IncomeController::class, 'update']);
+Route::delete('/income/{id}', [IncomeController::class, 'destroy']);  
+Route::get('/balance/{userId}', [BalanceController::class, 'show']);  
+Route::post('/expense', [ExpenseController::class, 'store']);
+Route::get('/expense/{userId}', [ExpenseController::class, 'show']);
+Route::put('/expense/{id}', [ExpenseController::class, 'update']);
+Route::delete('/expense/{id}', [ExpenseController::class, 'destroy']);
+  
 Route::middleware('auth:sanctum')->group(function () {
-  Route::post('/income', [IncomeController::class, 'store']);
-  Route::get('/income/{userId}', [IncomeController::class, 'show']);
-  Route::put('/income/{id}', [IncomeController::class, 'update']);
-  Route::delete('/income/{id}', [IncomeController::class, 'destroy']);
-
-  Route::get('/balance/{userId}', [BalanceController::class, 'show']); 
-
-  Route::post('/expense', [ExpenseController::class, 'store']);
-  Route::get('/expense/{userId}', [ExpenseController::class, 'show']);
-  Route::put('/expense/{id}', [ExpenseController::class, 'update']);
-  Route::delete('/expense/{id}', [ExpenseController::class, 'destroy']);
+ 
 
 });
 

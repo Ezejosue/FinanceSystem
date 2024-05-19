@@ -24,7 +24,22 @@ class IncomeRepository implements IncomeRepositoryInterface
         return Income::where('user_id', $userId)->get();
     }
 
-    
+    public function update($id, IncomeDTO $incomeDTO)
+    {
+        $income = Income::find($id);
+        return $income->update([
+            'type' => $incomeDTO->type,
+            'amount' => $incomeDTO->amount,
+            'date' => $incomeDTO->date,
+            'invoice' => $incomeDTO->invoice,
+            'user_id' => $incomeDTO->user_id
+        ]);
+    }
 
-    // Other CRUD methods
+    public function delete($id)
+    {
+        $income = Income::find($id);
+        return $income->delete();
+    }
+
 }

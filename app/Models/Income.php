@@ -20,4 +20,14 @@ class Income extends Model
         'invoice',
         'user_id'
     ];
+
+    public function updateIncome($data)
+    {
+        return $this->update($data);
+    }
+
+    public function deleteIncome()
+    {
+        return $this->delete();
+    }
 }

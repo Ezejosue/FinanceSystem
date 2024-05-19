@@ -2,7 +2,7 @@
 
 namespace App\DTOs;
 
-class BalanceDTO
+class IncomeDTO
 {
     public $entryType;
     public $description;

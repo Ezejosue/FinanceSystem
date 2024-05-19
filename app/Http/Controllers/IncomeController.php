@@ -37,7 +37,26 @@ class IncomeController extends Controller
         return response()->json($income);
     }
 
-    
+    public function update($id, Request $request)
+    {
+        $incomeDTO = new IncomeDTO(
+            $request->input('type'),
+            $request->input('amount'),
+            $request->input('date'),
+            $request->input('invoice'),
+            $request->input('user_id')
+        );
 
-    // Other controller methods
+        $income = $this->incomeService->updateIncome($id, $incomeDTO);
+
+        return response()->json($income);
+    }
+
+    public function destroy($id)
+    {
+        $this->incomeService->deleteIncome($id);
+
+        return response()->json(null, 204);
+    }
+
 }

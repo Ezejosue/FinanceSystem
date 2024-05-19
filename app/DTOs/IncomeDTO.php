@@ -2,18 +2,20 @@
 
 namespace App\DTOs;
 
-class BalanceDTO
+class IncomeDTO
 {
-    public $entryType;
-    public $description;
+    public $type;
     public $amount;
-    public $entryDate;
+    public $date;
+    public $invoice;
+    public $user_id;
 
-    public function __construct($entryType, $description, $amount, $entryDate)
+    public function __construct($type, $amount, $date, $invoice, $user_id)
     {
-        $this->entryType = $entryType;
-        $this->description = $description;
+        $this->type = $type;
         $this->amount = $amount;
-        $this->entryDate = $entryDate;
+        $this->date = $date;
+        $this->invoice = $invoice;
+        $this->user_id = $user_id;
     }
 }

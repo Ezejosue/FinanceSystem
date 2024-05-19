@@ -13,7 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('income', function (Blueprint $table) {
+            $table->foreign(['user_id'], 'income_ibfk_1')->references(['id'])->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('income', function (Blueprint $table) {
+            $table->dropForeign('income_ibfk_1');
+        });
     }
 };

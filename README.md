@@ -63,7 +63,7 @@ Welcome to the Finance Control API, a powerful tool for managing your financial 
 6. **Install the CORS package:**
     ```bash
     composer require fruitcake/laravel-cors
-    php artisan vendor:publish --provider="Fruitcake\Cors\CorsServiceProvider"
+    php artisan vendor:publish --provider="Fruitcake\\Cors\\CorsServiceProvider"
     ```
 
 7. **Configure CORS:**
@@ -85,7 +85,7 @@ Welcome to the Finance Control API, a powerful tool for managing your financial 
 
 2. **Publish Swagger configuration:**
     ```bash
-    php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+    php artisan vendor:publish --provider "L5Swagger\\L5SwaggerServiceProvider"
     ```
 
 3. **Generate Swagger documentation:**
@@ -132,17 +132,27 @@ The API documentation is generated using Swagger. You can access the documentati
 http://localhost:8000/api/documentation
 ```
 
+For the deployed version, visit:
+
+```
+https://financesystem-production.up.railway.app/api/documentation
+```
+
 ## Routes
 
 ### Income Routes
 
 - `POST /api/income` - Register a new income
 - `GET /api/income/{userId}` - Get income by user ID
+- `PUT /api/income/{id}` - Update an existing income record
+- `DELETE /api/income/{id}` - Delete an income record
 
 ### Expense Routes
 
 - `POST /api/expense` - Register a new expense
 - `GET /api/expense/{userId}` - Get expense by user ID
+- `PUT /api/expense/{id}` - Update an existing expense record
+- `DELETE /api/expense/{id}` - Delete an expense record
 
 ### Balance Routes
 

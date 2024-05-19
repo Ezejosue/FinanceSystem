@@ -24,6 +24,16 @@ class IncomeService
         return $this->incomeRepository->getByUserId($userId);
     }
 
+    public function updateIncome($id, IncomeDTO $incomeDTO)
+    {
+        return $this->incomeRepository->update($id, $incomeDTO);
+    }
+
+    public function deleteIncome($id)
+    {
+        return $this->incomeRepository->delete($id);
+    }
+
     
 
     // Other business logic methods

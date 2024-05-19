@@ -5,6 +5,46 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @OA\Schema(
+ *     schema="Expense",
+ *     type="object",
+ *     title="Expense",
+ *     description="Expense model",
+ *     @OA\Property(
+ *         property="id",
+ *         type="integer",
+ *         description="ID of the expense record"
+ *     ),
+ *     @OA\Property(
+ *         property="type",
+ *         type="string",
+ *         description="Type of expense"
+ *     ),
+ *     @OA\Property(
+ *         property="amount",
+ *         type="number",
+ *         format="float",
+ *         description="Amount of expense"
+ *     ),
+ *     @OA\Property(
+ *         property="date",
+ *         type="string",
+ *         format="date",
+ *         description="Date of expense"
+ *     ),
+ *     @OA\Property(
+ *         property="invoice",
+ *         type="string",
+ *         description="Invoice number"
+ *     ),
+ *     @OA\Property(
+ *         property="user_id",
+ *         type="integer",
+ *         description="ID of the user associated with the expense"
+ *     )
+ * )
+ */
 class Expense extends Model
 {
     use HasFactory;

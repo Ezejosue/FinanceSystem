@@ -2,39 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\IncomeService;
-use App\DTOs\IncomeDTO;
+use App\Services\ExpenseService;
+use App\DTOs\ExpenseDTO;
 use Illuminate\Http\Request;
 
-class IncomeController extends Controller
+class ExpenseController extends Controller
 {
-    protected $incomeService;
+    protected $expenseService;
 
-    public function __construct(IncomeService $incomeService)
+    public function __construct(ExpenseService $expenseService)
     {
-        $this->incomeService = $incomeService;
+        $this->expenseService = $expenseService;
     }
 
     /**
      * @OA\Post(
-     *     path="/api/income",
-     *     summary="Create a new income record",
-     *     tags={"Income"},
+     *     path="/api/expense",
+     *     summary="Create a new expense record",
+     *     tags={"Expense"},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
      *             required={"type","amount","date","invoice","user_id"},
-     *             @OA\Property(property="type", type="string", example="Salary"),
-     *             @OA\Property(property="amount", type="number", format="float", example=1000.00),
+     *             @OA\Property(property="type", type="string", example="Groceries"),
+     *             @OA\Property(property="amount", type="number", format="float", example=150.75),
      *             @OA\Property(property="date", type="string", format="date", example="2023-05-01"),
-     *             @OA\Property(property="invoice", type="string", example="INV123456"),
+     *             @OA\Property(property="invoice", type="string", example="INV987654"),
      *             @OA\Property(property="user_id", type="integer", example=1)
      *         )
      *     ),
      *     @OA\Response(
      *         response=201,
-     *         description="Income record created successfully",
-     *         @OA\JsonContent(ref="#/components/schemas/Income")
+     *         description="Expense record created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Expense")
      *     ),
      *     @OA\Response(
      *         response=400,
@@ -44,7 +44,7 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        $incomeDTO = new IncomeDTO(
+        $expenseDTO = new ExpenseDTO(
             $request->input('type'),
             $request->input('amount'),
             $request->input('date'),
@@ -52,17 +52,16 @@ class IncomeController extends Controller
             $request->input('user_id')
         );
 
-        $income = $this->incomeService->createIncome($incomeDTO);
+        $expense = $this->expenseService->createExpense($expenseDTO);
 
-        return response()->json($income, 201);
+        return response()->json($expense, 201);
     }
 
-
-     /**
+    /**
      * @OA\Get(
-     *     path="/api/income/{userId}",
-     *     summary="Get Income by User ID",
-     *     tags={"Income"},
+     *     path="/api/expense/{userId}",
+     *     summary="Get Expenses by User ID",
+     *     tags={"Expense"},
      *     @OA\Parameter(
      *         name="userId",
      *         in="path",
@@ -77,7 +76,7 @@ class IncomeController extends Controller
      *         description="Successful operation",
      *         @OA\JsonContent(
      *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Income")
+     *             @OA\Items(ref="#/components/schemas/Expense")
      *         ),
      *     ),
      *     @OA\Response(
@@ -88,20 +87,20 @@ class IncomeController extends Controller
      */
     public function show($userId)
     {
-        $income = $this->incomeService->getIncomeByUserId($userId);
+        $expense = $this->expenseService->getExpenseByUserId($userId);
 
-        return response()->json($income);
+        return response()->json($expense);
     }
 
     /**
      * @OA\Put(
-     *     path="/api/income/{id}",
-     *     summary="Update an existing income record",
-     *     tags={"Income"},
+     *     path="/api/expense/{id}",
+     *     summary="Update an existing expense record",
+     *     tags={"Expense"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="ID of the income record to update",
+     *         description="ID of the expense record to update",
      *         required=true,
      *         @OA\Schema(
      *             type="integer"
@@ -111,17 +110,17 @@ class IncomeController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"type","amount","date","invoice","user_id"},
-     *             @OA\Property(property="type", type="string", example="Salary"),
-     *             @OA\Property(property="amount", type="number", format="float", example=1000.00),
+     *             @OA\Property(property="type", type="string", example="Groceries"),
+     *             @OA\Property(property="amount", type="number", format="float", example=150.75),
      *             @OA\Property(property="date", type="string", format="date", example="2023-05-01"),
-     *             @OA\Property(property="invoice", type="string", example="INV123456"),
+     *             @OA\Property(property="invoice", type="string", example="INV987654"),
      *             @OA\Property(property="user_id", type="integer", example=1)
      *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Income record updated successfully",
-     *         @OA\JsonContent(ref="#/components/schemas/Income")
+     *         description="Expense record updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Expense")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -131,7 +130,7 @@ class IncomeController extends Controller
      */
     public function update($id, Request $request)
     {
-        $incomeDTO = new IncomeDTO(
+        $expenseDTO = new ExpenseDTO(
             $request->input('type'),
             $request->input('amount'),
             $request->input('date'),
@@ -139,21 +138,20 @@ class IncomeController extends Controller
             $request->input('user_id')
         );
 
-        $income = $this->incomeService->updateIncome($id, $incomeDTO);
+        $expense = $this->expenseService->updateExpense($id, $expenseDTO);
 
-        return response()->json($income);
+        return response()->json($expense);
     }
-
 
     /**
      * @OA\Delete(
-     *     path="/api/income/{id}",
-     *     summary="Delete an income record",
-     *     tags={"Income"},
+     *     path="/api/expense/{id}",
+     *     summary="Delete an expense record",
+     *     tags={"Expense"},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
-     *         description="ID of the income record to delete",
+     *         description="ID of the expense record to delete",
      *         required=true,
      *         @OA\Schema(
      *             type="integer"
@@ -161,7 +159,7 @@ class IncomeController extends Controller
      *     ),
      *     @OA\Response(
      *         response=204,
-     *         description="Income record deleted successfully"
+     *         description="Expense record deleted successfully"
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -171,7 +169,7 @@ class IncomeController extends Controller
      */
     public function destroy($id)
     {
-        $this->incomeService->deleteIncome($id);
+        $this->expenseService->deleteExpense($id);
 
         return response()->json(null, 204);
     }

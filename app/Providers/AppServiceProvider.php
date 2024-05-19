@@ -9,6 +9,8 @@ use App\Repositories\Interfaces\BalanceRepositoryInterface;
 use App\Repositories\BalanceRepository;
 use App\Repositories\Interfaces\UserRepositoryInterface;
 use App\Repositories\UserRepository;
+use App\Repositories\Interfaces\ExpenseRepositoryInterface;
+use App\Repositories\ExpenseRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IncomeRepositoryInterface::class, IncomeRepository::class);
         $this->app->bind(BalanceRepositoryInterface::class, BalanceRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(ExpenseRepositoryInterface::class, ExpenseRepository::class);
 
     }
 

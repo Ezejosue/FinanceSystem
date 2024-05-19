@@ -162,6 +162,416 @@
                     }
                 }
             }
+        },
+        "/api/expense": {
+            "post": {
+                "tags": [
+                    "Expense"
+                ],
+                "summary": "Create a new expense record",
+                "operationId": "a8e3ae7ca07f1c973a526d413dc78a7e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "amount",
+                                    "date",
+                                    "invoice",
+                                    "user_id"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "Groceries"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 150.75
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-05-01"
+                                    },
+                                    "invoice": {
+                                        "type": "string",
+                                        "example": "INV987654"
+                                    },
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Expense record created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Expense"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/expense/{userId}": {
+            "get": {
+                "tags": [
+                    "Expense"
+                ],
+                "summary": "Get Expenses by User ID",
+                "operationId": "914e1f5c58752e336e82317da4232699",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Expense"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        },
+        "/api/expense/{id}": {
+            "put": {
+                "tags": [
+                    "Expense"
+                ],
+                "summary": "Update an existing expense record",
+                "operationId": "7ba4583b6e602b72e061ffdd77a593be",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the expense record to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "amount",
+                                    "date",
+                                    "invoice",
+                                    "user_id"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "Groceries"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 150.75
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-05-01"
+                                    },
+                                    "invoice": {
+                                        "type": "string",
+                                        "example": "INV987654"
+                                    },
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Expense record updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Expense"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Expense"
+                ],
+                "summary": "Delete an expense record",
+                "operationId": "f5b971d322ddde4b4cdb39dbf558dac6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the expense record to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Expense record deleted successfully"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        },
+        "/api/income": {
+            "post": {
+                "tags": [
+                    "Income"
+                ],
+                "summary": "Create a new income record",
+                "operationId": "cd86a5d8a0b800896e3c110fb558d86b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "amount",
+                                    "date",
+                                    "invoice",
+                                    "user_id"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "Salary"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1000
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-05-01"
+                                    },
+                                    "invoice": {
+                                        "type": "string",
+                                        "example": "INV123456"
+                                    },
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Income record created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Income"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        },
+        "/api/income/{userId}": {
+            "get": {
+                "tags": [
+                    "Income"
+                ],
+                "summary": "Get Income by User ID",
+                "operationId": "926c22f3553ccd4ee70b9bd7c1073ec1",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "User ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Income"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
+        },
+        "/api/income/{id}": {
+            "put": {
+                "tags": [
+                    "Income"
+                ],
+                "summary": "Update an existing income record",
+                "operationId": "2747bd1a7b64f94e76eaecd0a000417c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the income record to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "amount",
+                                    "date",
+                                    "invoice",
+                                    "user_id"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "example": "Salary"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1000
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-05-01"
+                                    },
+                                    "invoice": {
+                                        "type": "string",
+                                        "example": "INV123456"
+                                    },
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Income record updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Income"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Income"
+                ],
+                "summary": "Delete an income record",
+                "operationId": "7cc22333e61af919be28692a72ab6d77",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the income record to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Income record deleted successfully"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -193,6 +603,72 @@
                         "description": "Date of the entry",
                         "type": "string",
                         "format": "date"
+                    }
+                },
+                "type": "object"
+            },
+            "Expense": {
+                "title": "Expense",
+                "description": "Expense model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the expense record",
+                        "type": "integer"
+                    },
+                    "type": {
+                        "description": "Type of expense",
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Amount of expense",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "date": {
+                        "description": "Date of expense",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "invoice": {
+                        "description": "Invoice number",
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "description": "ID of the user associated with the expense",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Income": {
+                "title": "Income",
+                "description": "Income model",
+                "properties": {
+                    "id": {
+                        "description": "ID of the income record",
+                        "type": "integer"
+                    },
+                    "type": {
+                        "description": "Type of income",
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Amount of income",
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "date": {
+                        "description": "Date of income",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "invoice": {
+                        "description": "Invoice number",
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "description": "ID of the user associated with the income",
+                        "type": "integer"
                     }
                 },
                 "type": "object"
